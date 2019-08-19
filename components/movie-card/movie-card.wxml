@@ -1,0 +1,10 @@
+<!--components/movie-card.wxml-->
+<template name='movie-card'>
+  <view class="movie-card">
+    <view class="movie-img-wrapper">
+      <image class="movie-img" src="{{img}}" mode="widthFix"></image>
+    </view>
+    <text class="movie-name">{{name}}</text>
+    <text class="movie-score">{{score}}</text>
+  </view>
+</template>

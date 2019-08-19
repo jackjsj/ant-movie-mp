@@ -1,21 +1,47 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* pages/list/list.wxss */
+@import '../../components/movie-card/movie-card.wxss';
+.swiper-image{
+  width:230rpx;
+  height:100%;
+  flex:none;
+  margin:0 10px;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+swiper{
+  height:375rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.swiper-item{
+  display:flex;
 }
-
-.usermotto {
-  margin-top: 200px;
+.swiper-desc{
+  margin:20rpx 0;
+  flex:auto;
+}
+.swiper-desc-title{
+  font-size:20px;
+}
+.swiper-desc-score{
+  color:#e09015;
+  margin-left:10px;
+}
+.movie-casts{
+  font-size:12px;
+  margin-top:10px;
+}
+.sub-title{
+  margin:10rpx;
+  border-left:4px solid #1867c0;
+  padding-left:8px;
+}
+.movie-summary{
+  font-size:12px;
+  margin:10px 10px 0 0;
+  overflow:auto;
+  height:190rpx;
+}
+.movie-list{
+  display:flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding:10rpx;
 }

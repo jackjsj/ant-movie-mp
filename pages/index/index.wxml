@@ -1,13 +1,28 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<!--pages/list/list.wxml-->
+<import src="../../components/movie-card/movie-card.wxml" />
+<view>
+  <!-- <button open-type="share">分享此页</button> -->
+  <swiper indicator-dots>
+    <swiper-item wx:for="{{swipers}}" wx:key="{{index}}" class="swiper-item">
+      <image class="swiper-image" src="{{item.img}}" mode="aspectFit"></image>
+      <view class="swiper-desc">
+        <text class="swiper-desc-title">{{item.title}}</text>
+        <text class="swiper-desc-score">{{item.score}}</text>
+        <view>
+          <text class="movie-casts">主演：{{item.casts}}</text>
+        </view>
+        <view class="movie-summary">
+          <text >简介：{{item.summary}}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="sub-title">
+    <text>Top250</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="movie-list" >
+    <view wx:for="{{movies}}" wx:key="{{index}}" data-index="{{index}}" bindtap="onMovieCardTap">
+      <template is="movie-card" data="{{...item}}"></template>
+    </view>
   </view>
 </view>
