@@ -1,5 +1,6 @@
 // pages/list/list.js
 import Mock from '../../miniprogram_npm/mockjs/index.js';
+import {request} from '../../api/request.js';
 Page({
 
   /**
@@ -88,6 +89,14 @@ Page({
     // console.log(this.data.imgs);
     this.getMovies();
     this.getInTheaters();
+    request({
+      url: 'https://douban.uieee.com/v2/movie/top250?count=9',
+      header: {
+        "Content-Type": "json"
+      },
+    }).then(resp=>{
+      console.log(resp);
+    })
   },
 
   /**
