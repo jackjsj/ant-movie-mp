@@ -1,6 +1,6 @@
 <!--components/movie-card.wxml-->
-<template name='movie-card'>
-  <view class="movie-card">
+<template name='movie-card' >
+  <view class="movie-card" data-id="{{id}}"  bindtap="onCardClick">
     <view class="movie-img-wrapper">
       <image class="movie-img" src="{{images.large}}" mode="aspectFill"></image>
     </view>

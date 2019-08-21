@@ -1,0 +1,16 @@
+<!--pages/movie-detail/movie-detail.wxml-->
+<view>
+  <!-- 影片概览 -->
+  <view>
+    <view>
+      <image src=""></image>
+    </view>
+    <view>
+      <text>送我上青天</text>
+    </view>
+  </view>
+  <!-- 简介 -->
+  <view></view>
+  <!-- 评论 -->
+  <view></view>
+</view>

@@ -20,25 +20,33 @@ Page({
     newMovies: [],
     hotMovies: [],
   },
-  onMovieCardTap(e) {
-    console.log(e);
+  /**
+   * 电影条目卡片点击事件监听
+   */
+  onCardClick(e){
+    const id = e.currentTarget.dataset.id;
+    console.log(id);
+    // 根据id查询电影详情
+    wx.navigateTo({
+      url: '/pages/movie-detail/movie-detail?id='+id,
+    })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 影院热映
     getInTheaters().then(data => {
-      console.log(data);
       this.setData({
         inTheaters: data.subjects
       })
     })
+    // 豆瓣热门
     getHotMovies().then(data => {
-      console.log(data);
       this.setData({
         hotMovies: data.subjects.map(item => {
           return {
+            id:item.id,
             title: item.title,
             images: {
               large: item.cover,
