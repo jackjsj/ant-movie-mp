@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/movie-detail/movie-detail",
     "pages/index/index",
+    "pages/movie-detail/movie-detail",
     "pages/about/about",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1867C0",
-    "navigationBarTitleText": "蚂蚁，么么哒",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

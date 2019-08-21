@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading",
+    "i-rate": "/iview/rate/index",
+    "i-icon":"/iview/icon/index"
+  }
 }

@@ -1,6 +1,10 @@
 /**app.wxss**/
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
 page{
   height:100vh;
+}
+view{
+  box-sizing: border-box;
 }
 .container {
   height: 100%;
@@ -11,4 +15,57 @@ page{
   padding: 200rpx 0;
   box-sizing: border-box;
   font-family: MicrosoftYaHei;
+}
+.flex-wrapper{
+  display:flex;
 } 
+.aic{
+  align-items: center;
+}
+.ait{
+  align-items:flex-start;
+}
+.f12{
+  font-size:12px;
+}
+.f9{
+  font-size:9px;
+}
+.f18{
+  font-size:18px;
+}
+.f22{
+  font-size:22px;
+}
+.b{
+  font-weight: bold;
+}
+.flex-auto{
+  flex:auto;
+}
+.flex-column{
+  display:flex;
+  flex-direction: column;
+}
+.jca{
+  justify-content: space-around;
+}
+.mt20{
+  margin-top:20rpx;
+}
+.mt30{
+  margin-top:30rpx;
+}
+.lh1{
+  line-height:1;
+}
+.jcb{
+  justify-content: space-between;
+}
+.flex-column-reverse{
+  display:flex;
+  flex-direction: column-reverse;
+}
+.aib{
+  align-items: baseline;
+}

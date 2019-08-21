@@ -1,5 +1,6 @@
 import {
-  BASE_URL
+  BASE_URL,
+  apikey
 } from './urls.js'
 
 function request(options) {
@@ -19,7 +20,10 @@ function request(options) {
     } else {
       wx.request({
         url: _url,
-        data,
+        data:{
+          apikey,
+          ...data,
+        },
         method,
         header: {
           "Content-Type": "json"

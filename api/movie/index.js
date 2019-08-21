@@ -1,13 +1,14 @@
 import request from '../request.js';
 import Mock from 'mockjs';
-const apiKey ='?apikey=0b2bdeda43b5688921839c8ecb20399b';
 //获取Top250电影列表，支持分页
-const top25Api = '/v2/movie/top250' + apiKey;
-const inTheatersApi = '/v2/movie/in_theaters' + apiKey;
-const weeklyApi = '/v2/movie/weekly' + apiKey;
-const newMoviesApi = '/v2/movie/new_movies' + apiKey;
+const top250Api = '/v2/movie/top250';
+const inTheatersApi = '/v2/movie/in_theaters';
+const weeklyApi = '/v2/movie/weekly';
+const newMoviesApi = '/v2/movie/new_movies';
 const hotMoviesApi = 'https://movie.douban.com/j/search_subjects?type=movie&tag=热门';
-const movieSearchApi = '/v2/movie/search' + apiKey;
+//电影详情接口直接加id
+const movieDetailApi = '/v2/movie/subject/';
+
 /**
  * 获取TOP250电影列表
  */
@@ -51,5 +52,14 @@ export function getHotMovies(){
   return request({
     url: hotMoviesApi,
     noBaseUrl:true,
+  })
+}
+
+/**
+ * 获取电影详情
+ */
+export function getMovieDetail(id){
+  return request({
+    url: movieDetailApi + id,
   })
 }

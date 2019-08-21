@@ -1,16 +1,54 @@
 <!--pages/movie-detail/movie-detail.wxml-->
-<view>
-  <!-- 影片概览 -->
-  <view>
-    <view>
-      <image src=""></image>
-    </view>
-    <view>
-      <text>送我上青天</text>
-    </view>
+<block wx:if="{{loading}}">
+  <view class="container">
+    <mp-loading type="circle"></mp-loading> 
   </view>
-  <!-- 简介 -->
-  <view></view>
-  <!-- 评论 -->
-  <view></view>
-</view>
+</block>
+<block wx:else>
+  <view class="movie-detail">
+    <!-- 影片概览 -->
+    <view class="overview">
+      <view class="movie-image-wrapper">
+        <image class="movie-image" src="{{detail.images.large}}" mode="aspectFill"></image>
+      </view>
+      <view class="movie-info">
+        <text class="title">{{detail.title}}({{detail.year}})</text>
+        <text class="desc">{{detail.genres[0]}} / {{detail.countries[0]}} / 片长{{detail.durations[0]}}</text>
+        <view class="score-wrapper flex-auto">
+          <view class="flex-wrapper ait b">
+            <text class="f12">豆瓣评分</text>
+            <text class="f9"> TM</text>
+          </view>
+          <view class="flex-wrapper ais mt30">
+            <view class="flex-column aic jcb">
+              <text class="b f22 lh1">{{detail.rating.average}}</text>
+              <view class="star">
+                <i-rate 
+                  disabled="{{true}}"
+                  value="{{detail.rating.average/2}}"
+                  size="10">
+                </i-rate>
+              </view>
+            </view>
+            <!-- 评分项 -->
+            <view class="flex-column-reverse flex-auto">
+              <view wx:for="{{detail.rating.details}}"  wx:for-item="item" wx:key="{{index}}" class="flex-wrapper aib">
+                <view class="flex-wrapper aic star-list">
+                  <i-icon class="star" type="collection_fill" size="9" color="#c0c0c0" wx:for-index="j" wx:key="j" wx:for="{{index-0}}" />
+                </view>
+                <view class="score-slot flex-auto">
+                  
+                  <view class="score-value" style="{{'width:'+(item/detail.ratings_count*100)+'%'}}"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 简介 -->
+    <view></view>
+    <!-- 评论 -->
+    <view></view>
+  </view>
+</block>
