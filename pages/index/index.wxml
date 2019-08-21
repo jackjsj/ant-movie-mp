@@ -1,28 +1,30 @@
 <!--pages/list/list.wxml-->
 <import src="../../components/movie-card/movie-card.wxml" />
 <view>
-  <!-- <button open-type="share">分享此页</button> -->
-  <swiper indicator-dots>
-    <swiper-item wx:for="{{swipers}}" wx:key="{{index}}" class="swiper-item">
-      <image class="swiper-image" src="{{item.img}}" mode="aspectFit"></image>
-      <view class="swiper-desc">
-        <text class="swiper-desc-title">{{item.title}}</text>
-        <text class="swiper-desc-score">{{item.score}}</text>
-        <view>
-          <text class="movie-casts">主演：{{item.casts}}</text>
-        </view>
-        <view class="movie-summary">
-          <text >简介：{{item.summary}}</text>
-        </view>
+  <view>
+    <!-- 区块头部 -->
+    <view class="session-header">
+      <text class="sub-title">影院热映</text>
+      <text class="more-btn">查看更多></text>
+    </view>
+    <!-- 区块内容 -->
+    <view class="session-content-list">
+      <view wx:for="{{inTheaters}}" wx:key="{{index}}" class="movie-item">
+        <template is="movie-card" data="{{...item}}" />
       </view>
-    </swiper-item>
-  </swiper>
-  <view class="sub-title">
-    <text>Top250</text>
+    </view>
   </view>
-  <view class="movie-list" >
-    <view wx:for="{{movies}}" wx:key="{{index}}" data-index="{{index}}" bindtap="onMovieCardTap">
-      <template is="movie-card" data="{{...item}}"></template>
+  <view>
+    <!-- 区块头部 -->
+    <view class="session-header">
+      <text class="sub-title">豆瓣热门</text>
+      <text class="more-btn">查看更多></text>
+    </view>
+    <!-- 区块内容 -->
+    <view class="session-content-list">
+      <view wx:for="{{hotMovies}}" wx:key="{{index}}" class="movie-item">
+        <template is="movie-card" data="{{...item}}" />
+      </view>
     </view>
   </view>
 </view>

@@ -1,1 +1,1 @@
-export const path = 'https://douban.uieee.com/';
+export const BASE_URL = 'https://api.douban.com/';

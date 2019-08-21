@@ -2,9 +2,9 @@
 <template name='movie-card'>
   <view class="movie-card">
     <view class="movie-img-wrapper">
-      <image class="movie-img" src="{{img}}" mode="widthFix"></image>
+      <image class="movie-img" src="{{images.large}}" mode="aspectFill"></image>
     </view>
-    <text class="movie-name">{{name}}</text>
-    <text class="movie-score">{{score}}</text>
+    <text class="movie-name">{{title}}</text>
+    <text class="movie-score">豆瓣评分：{{rating.average || '暂无评分'}}</text>
   </view>
 </template>

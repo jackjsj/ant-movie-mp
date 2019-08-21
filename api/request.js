@@ -1,22 +1,39 @@
-export function request(options) {
-  const {url,data,header,method} = options;
-  const promise = new Promise((resolve, reject) => {
-    wx.request({
-      url,
-      data,
-      header: header || {
-        "Content-Type": "json"
-      },
-      method,
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        resolve(res);
-      },
-      fail: function(res) {
-        reject(res);
-      }
-    })
+import {
+  BASE_URL
+} from './urls.js'
+
+function request(options) {
+  const {
+    url,
+    method,
+    data,
+    mock,
+    noBaseUrl,
+  } = options;
+  const _url = noBaseUrl ? url : BASE_URL + url;
+  return new Promise((resolve, reject) => {
+    if (mock) { // 如果有Mock数据，拦截请求，100毫秒后返回mock数据
+      setTimeout(() => {
+        resolve(mock);
+      }, 100);
+    } else {
+      wx.request({
+        url: _url,
+        data,
+        method,
+        header: {
+          "Content-Type": "json"
+        },
+        success: (res) => {
+
+          resolve(res.data);
+        },
+        fail: (res) => {
+          reject(res);
+        },
+      })
+    }
   })
-  return promise;
 }
+
+export default request;
