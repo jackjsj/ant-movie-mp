@@ -1,6 +1,5 @@
 {
   "usingComponents": {
     "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
-  },
-  "navigationBarTitleText": "蚂蚁电影"
+  }
 }

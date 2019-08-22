@@ -21,9 +21,14 @@ export function getTop250Movies() {
 /**
  * 影院热映
  */
-export function getInTheaters() {
+export function getInTheaters(options = {}) {
+  const {start,count} = options;
   return request({
     url: inTheatersApi,
+    data:{
+      start,
+      count,
+    }
   });
 }
 
@@ -48,10 +53,15 @@ export function getNewMovies() {
 /**
  * 豆瓣热门
  */
-export function getHotMovies(){
+export function getHotMovies(options = {}){
+  const { start, count } = options;
   return request({
     url: hotMoviesApi,
     noBaseUrl:true,
+    data:{
+      page_limit: count,
+      page_start: start
+    }
   })
 }
 

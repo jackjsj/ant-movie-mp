@@ -10,8 +10,23 @@ Page({
   data: {
     detail: {},
     loading: true,
+    summaryExpand:true,
+    toggleBtnVisible:false,
   },
-
+  toggleSummaryExpand(){
+    this.setData({
+      summaryExpand:!this.data.summaryExpand
+    })
+  },
+  onPhotoClick(e){
+    const dataset = e.target.dataset;
+    const current = dataset.src;
+    const urls = dataset.photos.map(item=>item.image);
+    wx.previewImage({
+      urls,
+      current
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -34,15 +49,23 @@ Page({
       this.setData({
         detail,
         loading: false,
+      },()=>{
+        //如果简介超过一定的高度，则显示展开收起按钮
+        const query = wx.createSelectorQuery();
+        query.select('#movie-summary').boundingClientRect().exec((rect) => {
+          if (rect[0].height > 79) {
+            this.setData({
+              toggleBtnVisible: true,
+              summaryExpand: false,
+            })
+          }
+        })
       });
       wx.setNavigationBarTitle({
         title: detail.title
       })
       console.log(detail);
-      const query = wx.createSelectorQuery();
-      query.select('#moive-summary').boundingClientRect((rect) => {
-        console.log(rect);
-      }).exec();
+      
     })
   },
 

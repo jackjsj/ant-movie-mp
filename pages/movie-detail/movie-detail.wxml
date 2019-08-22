@@ -58,16 +58,102 @@
       </view>
     </view>
     <!-- 简介 -->
-    <view>
+    <view class="summary">
       <text class="sub-title">简介</text>
       <rich-text>
-        <p class="f14 movie-summary" id="movie-summary">
+        <p class="movie-summary {{summaryExpand?'':'collapse'}}" id="movie-summary">
           {{detail.summary}}
         </p>
       </rich-text>
-      <view class="f14 gray tar">展开</view>
+      <view class="f14 gray tar" wx:if="{{toggleBtnVisible}}" bindtap="toggleSummaryExpand">{{summaryExpand?'收起':'展开'}}</view>
     </view>
-    <!-- 评论 -->
-    <view></view>
+    <!-- 影人 -->
+    <view class="casts">
+      <text class="sub-title">影人</text>
+      <view class="cast-list mt20">
+        <view class="cast-card" wx:for="{{detail.directors}}" wx:key="item.id">
+          <view>
+            <image class="cast-img" src="{{item.avatars.large}}"></image>
+          </view>
+          <text class="f12">{{item.name}}</text>
+          <text class="desc">导演</text>
+        </view>
+        <view class="cast-card" wx:for="{{detail.casts}}" wx:key="item.id">
+          <view>
+            <image class="cast-img" src="{{item.avatars.large}}"></image>
+          </view>
+          <text class="f14">{{item.name}}</text>
+          <text class="desc">演员</text>
+        </view>
+      </view>
+    </view>
+    <!-- 剧照 -->
+    <view class="photo">
+      <view class="flex-wrapper aic jcb">
+        <text class="sub-title">剧照</text>
+        <text class="desc b">全部 {{detail.photos_count}} ></text>
+      </view>
+      <view class="flex-wrapper photo-list">
+        <view class="photo-item" wx:for="{{detail.photos}}" wx:key="item.id">
+          <image src="{{item.image}}" mode="aspectFill" data-src="{{item.image}}" data-photos="{{detail.photos}}" bindtap="onPhotoClick"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 短评 -->
+    <view class="comments">
+      <view class="flex-wrapper jcb aic">
+        <text class="sub-title">短评</text>
+        <text class="desc b">全部 {{detail.comments_count}} ></text>
+      </view>
+      <view>
+        <view class="comment-item" wx:for="{{detail.popular_comments}}" wx:key="{{item.id}}">
+          <!-- 评论者信息 -->
+          <view class="flex-wrapper aic">
+            <view class="avatar-wrapper">
+              <image class="avatar" src="{{item.author.avatar}}"></image>
+            </view>
+            <view>
+              <text class="b f14">{{item.author.name}}</text>
+              <view class="flex-wrapper aic">
+                <view class="flex-wrapper">
+                  <i-rate i-class="myrate" class="f10" disabled="{{true}}" value="{{item.rating.value}}" size="10">
+                  </i-rate>
+                </view>
+                <view class="f10 gray">{{item.created_at}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="comment-content">{{item.content}}</view>
+          <view class="gray f10 flex-wrapper aic">
+            <i-icon type="praise" />{{item.useful_count}}</view>
+        </view>
+      </view>
+      <view class="flex-wrapper jcb aic">
+        <text class="f14 b">查看全部短评</text>
+        <text class="desc b">></text>
+      </view>
+    </view>
+    <!-- 影评 -->
+    <view class="reviews">
+      <view class="flex-wrapper jcb aic">
+        <text class="sub-title">影评</text>
+        <text class="desc b">全部 {{detail.reviews_count}} ></text>
+      </view>
+      <view class="review-list">
+        <view wx:for="{{detail.popular_reviews}}" wx:key="{{item.id}}" class="reivew-item">
+          <!-- 影评人信息 -->
+          <view class="flex-wrapper aic">
+            <image class="avatar-mini" src="{{item.author.avatar}}"></image>
+            <text class="desc mr10">{{item.author.name}}看过</text>
+            <i-rate i-class="myrate" class="f10" disabled="{{true}}" value="{{item.rating.value}}" size="10" />
+          </view>
+          <!-- 影评标题 -->
+          <view class="f16 b review-title">{{item.title}}</view>
+          <!-- 影评内容 -->
+          <view class="f14">{{item.summary}}</view>
+        </view>
+      </view>
+      <view class="reivew-item f14 b">查看全部影评</view>
+    </view>
   </view>
 </block>

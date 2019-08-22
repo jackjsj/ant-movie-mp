@@ -1,0 +1,17 @@
+<!--pages/more/more.wxml-->
+<import src="../../components/movie-card/movie-card.wxml" />
+<block wx:if="{{loading}}">
+  <view class="container">
+    <mp-loading type="circle"></mp-loading>
+  </view>
+</block>
+<block wx:else>
+  <view class="more-page">
+    <view wx:for="{{movies}}" wx:key="{{item.id}}" class="movie-item">
+      <template is="movie-card" data="{{...item}}" />
+    </view>
+  </view>
+  <view wx:if="{{loadMore}}">
+      <mp-loading type="circle"></mp-loading>
+  </view>
+</block>

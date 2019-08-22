@@ -19,6 +19,13 @@ Page({
     weekly: [],
     newMovies: [],
     hotMovies: [],
+    loading:true,
+  },
+  onMoreClick(e){
+    const type = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: '/pages/more/more?type=' + type,
+    })
   },
   /**
    * 电影条目卡片点击事件监听
@@ -35,16 +42,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 影院热映
-    getInTheaters().then(data => {
+    Promise.all([getInTheaters(),getHotMovies()]).then(([inTheaters, hotMovies])=>{
       this.setData({
-        inTheaters: data.subjects
-      })
-    })
-    // 豆瓣热门
-    getHotMovies().then(data => {
-      this.setData({
-        hotMovies: data.subjects.map(item => {
+        inTheaters: inTheaters.subjects,
+        hotMovies: hotMovies.subjects.map(item => {
           return {
             id:item.id,
             title: item.title,
@@ -55,7 +56,8 @@ Page({
               average: item.rate
             }
           }
-        })
+        }),
+        loading:false,
       })
     })
   },

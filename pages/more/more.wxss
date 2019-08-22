@@ -1,0 +1,11 @@
+/* pages/more/more.wxss */
+@import '../../components/movie-card/movie-card.wxss';
+.more-page{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding:10rpx;
+}
+.movie-item{
+  margin:20rpx 0;
+}
