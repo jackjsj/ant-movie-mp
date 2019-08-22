@@ -39,6 +39,10 @@ Page({
         title: detail.title
       })
       console.log(detail);
+      const query = wx.createSelectorQuery();
+      query.select('#moive-summary').boundingClientRect((rect) => {
+        console.log(rect);
+      }).exec();
     })
   },
 
@@ -46,7 +50,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**

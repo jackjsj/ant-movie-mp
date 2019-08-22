@@ -6,19 +6,23 @@
 }
 .overview {
   display: flex;
-  align-items: stretch;
+  /* align-items: flex-end; */
+  margin-bottom:20rpx;
 }
 
 .movie-image-wrapper {
-   width:230rpx;
-  height:340rpx;
   overflow: hidden;
   border-radius: 12rpx;
+  background:#fff;
+  flex:none;
+  display:flex;
+  align-items:center;
+  box-shadow: 1px 1px 4px 1px #aaa;
 }
 
 .movie-image{
-  height:100%;
-  width:100%;
+  width:230rpx;
+  height:340rpx;
 }
 .movie-info{
   display:flex;
@@ -40,6 +44,7 @@
   border-radius: 12rpx;
   margin-top:15rpx;
   padding:15rpx;
+  box-shadow: 0 1px 2px 0 #aaa;
 }
 .score-slot{
   height:14rpx;
@@ -61,4 +66,16 @@
 }
 .ais{
   align-items: stretch;
+}
+.sub-title{
+  font-weight: bold;
+  font-size:16px;
+  
+}
+.movie-summary{
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  margin-top: 10rpx;
 }

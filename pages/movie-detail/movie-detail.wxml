@@ -1,7 +1,13 @@
 <!--pages/movie-detail/movie-detail.wxml-->
+<wxs module="util">
+  function joinArray(arr, splitChar) {
+    return arr.join(splitChar);
+  }
+  module.exports.joinArray = joinArray;
+</wxs>
 <block wx:if="{{loading}}">
   <view class="container">
-    <mp-loading type="circle"></mp-loading> 
+    <mp-loading type="circle"></mp-loading>
   </view>
 </block>
 <block wx:else>
@@ -13,32 +19,37 @@
       </view>
       <view class="movie-info">
         <text class="title">{{detail.title}}({{detail.year}})</text>
-        <text class="desc">{{detail.genres[0]}} / {{detail.countries[0]}} / 片长{{detail.durations[0]}}</text>
+        <text class="desc">{{util.joinArray(detail.genres,' ')}} / {{util.joinArray(detail.countries,' ')}} / 片长{{detail.durations[0]}}</text>
         <view class="score-wrapper flex-auto">
           <view class="flex-wrapper ait b">
             <text class="f12">豆瓣评分</text>
             <text class="f9"> TM</text>
           </view>
           <view class="flex-wrapper ais mt30">
-            <view class="flex-column aic jcb">
-              <text class="b f22 lh1">{{detail.rating.average}}</text>
-              <view class="star">
-                <i-rate 
-                  disabled="{{true}}"
-                  value="{{detail.rating.average/2}}"
-                  size="10">
-                </i-rate>
+            <block wx:if="{{detail.rating.average}}">
+              <view class="flex-column aic jcb">
+                <text class="b f22 lh1">{{detail.rating.average}}</text>
+                <view class="star">
+                  <i-rate class="f10" disabled="{{true}}" value="{{detail.rating.average/2}}" size="10">
+                  </i-rate>
+                </view>
               </view>
-            </view>
+            </block>
+            <block wx:else>
+              <view class="flex-wrapper aic">
+                <text class="f12 gray lh1">暂无评分</text>
+              </view>
+            </block>
             <!-- 评分项 -->
             <view class="flex-column-reverse flex-auto">
-              <view wx:for="{{detail.rating.details}}"  wx:for-item="item" wx:key="{{index}}" class="flex-wrapper aib">
+              <view wx:for="{{detail.rating.details}}" wx:for-item="item" wx:key="{{index}}" class="flex-wrapper aib">
                 <view class="flex-wrapper aic star-list">
                   <i-icon class="star" type="collection_fill" size="9" color="#c0c0c0" wx:for-index="j" wx:key="j" wx:for="{{index-0}}" />
                 </view>
                 <view class="score-slot flex-auto">
-                  
-                  <view class="score-value" style="{{'width:'+(item/detail.ratings_count*100)+'%'}}"></view>
+                  <block wx:if="{{detail.ratings_count}}">
+                    <view class="score-value" style="{{'width:'+(item/detail.ratings_count*100)+'%'}}"></view>
+                  </block>
                 </view>
               </view>
             </view>
@@ -47,7 +58,15 @@
       </view>
     </view>
     <!-- 简介 -->
-    <view></view>
+    <view>
+      <text class="sub-title">简介</text>
+      <rich-text>
+        <p class="f14 movie-summary" id="movie-summary">
+          {{detail.summary}}
+        </p>
+      </rich-text>
+      <view class="f14 gray tar">展开</view>
+    </view>
     <!-- 评论 -->
     <view></view>
   </view>

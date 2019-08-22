@@ -31,8 +31,20 @@ view{
 .f9{
   font-size:9px;
 }
+.f10{
+  font-size: 10px;
+}
+.f14{
+  font-size:14px;
+}
+.f16{
+  font-size:16px;
+}
 .f18{
   font-size:18px;
+}
+.f20{
+  font-size:20px;
 }
 .f22{
   font-size:22px;
@@ -68,4 +80,13 @@ view{
 }
 .aib{
   align-items: baseline;
+}
+i-icon{
+  display:flex;
+}
+.gray{
+  color:#c0c0c0;
+}
+.tar{
+  text-align:right;
 }
